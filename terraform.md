@@ -14,18 +14,51 @@ sudo apt update && sudo apt install terraform
 
 ### Más usuados:
 
-* **init**: Prepara tu directorio de trabajo para otros comandos.
+* **init**: Prepara tu directorio de trabajo para otros comandos. Al realizar el init descarga los providers de la configuración.
+  ```bash
+  terraform init
+  ```
 * **validate**: Verifica si la configuración es válida.
-* **plan**: Muestra los cambios requeridos por la configuración actual.
-  * -out [plan-file]: exporta el plan a un archivo
-* **apply**: Crea o actualiza la infraestructura.
-  * [plan-file]: aplica el plan (sin ninguna otra confirmación)
-  * -var 'foo=bar': Setea una variable.
-  * -var-file=[archivo]: Setea las variables según el archivo entrefado.
-  * -replace [recurso]: reemplaza el recurso, lo elimina y lo crea de nuevo.
-  * -auto-approve=true: Aplica el cambio sin la confirmación (no recomendado)
-  * -destroy: Destruye la infraestructura creada anteriormente.
-* **destroy**: Destruye la infraestructura creada anteriormente. (alias de apply -destroy)
+  ```bash
+  terraform validate
+  ```
+* **plan**: Muestra los cambios requeridos por la configuración actual. 
+  ```
+  terraform plan
+  ```
+  * -out [plan-file]: exporta el plan a un archivo. Ej:
+    ```bash
+    terraform plan mi-plan
+    ```
+* **apply**: Crea o actualiza la infraestructura. 
+  ```bash
+  terraform apply
+  ```
+  * [plan-file]: aplica el plan (sin ninguna otra confirmación) 
+    ```bash
+    terraform apply mi-plan
+    ```
+  * -var 'foo=bar': Setea una variable. 
+    ```bash
+    terraform apply -var VPCID=vpc-0011223344
+    ```
+  * -var-file=[archivo]: Setea las variables según el archivo entregado. 
+    ```bash
+    terraform apply -var-file=variables.txt
+    ```
+  * -replace [recurso]: reemplaza el recurso, lo elimina y lo crea de nuevo. Se hace para forzar el remplazo de un recurso que está fallando.
+    ```
+    terraform apply -replace aws_instance.bastion_instance
+    ```
+  * -auto-approve=true: Aplica el cambio sin la confirmación (no recomendado) ```terraform apply -auto-approve=true```
+  * -destroy: Destruye la infraestructura creada anteriormente. 
+    ```bash
+    terraform apply -destroy
+    ```
+* **destroy**: Destruye la infraestructura creada anteriormente. (alias de apply -destroy) 
+  ```bash
+  terraform destroy
+  ```
 
 ### Otros comandos:
 
