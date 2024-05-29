@@ -28,7 +28,7 @@ sudo apt update && sudo apt install terraform
   ```
   * -out [plan-file]: exporta el plan a un archivo. Ej:
     ```bash
-    terraform plan mi-plan
+    terraform plan -out mi-plan
     ```
 * **apply**: Crea o actualiza la infraestructura. 
   ```bash
